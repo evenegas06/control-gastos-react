@@ -1,10 +1,19 @@
 import Budget from "./Budget";
 
-const Header = () => {
+const Header = ({ budget, setBudget, isValidBudget, setIsValidBudget }) => {
     return (
         <header>
             <h1>Planificador de Gastos</h1>
-            <Budget />
+
+            {isValidBudget ? (
+                <p>Control de presupuesto</p>
+            ) : (
+                <Budget
+                    budget={budget}
+                    setBudget={setBudget}
+                    setIsValidBudget={setIsValidBudget}
+                />
+            )}
         </header>
     );
 };
