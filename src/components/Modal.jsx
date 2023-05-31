@@ -141,4 +141,5 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
         </div>
     );
 };
+
 export default Modal;

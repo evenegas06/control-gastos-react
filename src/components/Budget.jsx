@@ -49,4 +49,5 @@ const Budget = ({ budget, setBudget, setIsValidBudget }) => {
         </div>
     );
 };
+
 export default Budget;

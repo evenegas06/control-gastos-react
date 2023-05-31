@@ -5,4 +5,5 @@ const Alert = ({ children, type }) => {
         </div>
     );
 };
+
 export default Alert;

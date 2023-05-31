@@ -20,4 +20,5 @@ const Header = ({ budget, setBudget, is_valid_budget, setIsValidBudget }) => {
         </header>
     );
 };
+
 export default Header;

@@ -26,4 +26,5 @@ const BudgetControl = ({ budget }) => {
         </div>
     );
 };
+
 export default BudgetControl;
