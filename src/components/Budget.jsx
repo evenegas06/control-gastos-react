@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Alert from "./Alert";
 
-const Budget = ({ budget, setBudget, isValidBudget, setIsValidBudget }) => {
+const Budget = ({ budget, setBudget, setIsValidBudget }) => {
     /*----- State -----*/
     const [message, setMessage] = useState('');
 

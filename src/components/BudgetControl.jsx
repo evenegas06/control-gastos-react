@@ -9,15 +9,18 @@ const BudgetControl = ({ budget }) => {
 
             <div className="contenido-presupuesto">
                 <p>
-                    <span>Presupuesto: </span> {formatCurrency(budget)}
+                    <span>Presupuesto: </span>
+                    {formatCurrency(budget)}
                 </p>
 
                 <p>
-                    <span>Disponible: </span> {formatCurrency(0)}
+                    <span>Disponible: </span>
+                    {formatCurrency(0)}
                 </p>
 
                 <p>
-                    <span>Gastado: </span> {formatCurrency(0)}
+                    <span>Gastado: </span>
+                    {formatCurrency(0)}
                 </p>
             </div>
         </div>
