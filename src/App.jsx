@@ -1,17 +1,23 @@
 import { useState } from "react";
 
 import Header from "./components/Header";
-import new_budget_icon from "./img/nuevo-gasto.svg";
 import Modal from "./components/Modal";
 
+import new_budget_icon from "./img/nuevo-gasto.svg";
+
 function App() {
-  /*----- State -----*/
+  /* ----- State ----- */
   const [budget, setBudget] = useState(0);
   const [is_valid_budget, setIsValidBudget] = useState(false);
   const [modal, setModal] = useState(false);
   const [animation, setAnimation] = useState(false);
   const [expenses, setExpenses] = useState([]);
 
+  /**
+   * Add expense in *expenses state*.
+   * 
+   * @param {Object} expense 
+   */
   const saveExpense = (expense) => {
     setExpenses([
       ...expenses,
@@ -20,7 +26,7 @@ function App() {
   };
 
   /**
-   * 
+   * Open modal window.
    */
   const handleModal = () => {
     setModal(true);

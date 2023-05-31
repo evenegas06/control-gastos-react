@@ -1,6 +1,7 @@
 import { useState } from "react";
-import close_icon from "../img/cerrar.svg";
+
 import Alert from "./Alert";
+import close_icon from "../img/cerrar.svg";
 
 const initialExpense = {
     name: '',
@@ -14,7 +15,7 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
     const [error_message, setErrorMessage] = useState('');
 
     /**
-     * 
+     *  Close modal after 500 ms.
      */
     const closeModal = () => {
         setAnimation(false);
@@ -25,6 +26,7 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
     };
 
     /**
+     * Fill the *expense state* attributes with the input value.
      * 
      * @param {Object} event 
      */
@@ -45,6 +47,7 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
     };
 
     /**
+     * Check if inputs are not empty and then add a new expense.
      * 
      * @param {Object} event 
      */
@@ -61,7 +64,7 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
             return;
         }
 
-        saveExpense({expense});
+        saveExpense({ expense });
         setExpense(initialExpense);
     };
 
@@ -80,6 +83,7 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
                 onSubmit={addExpense}
             >
                 <legend>Nuevo gasto</legend>
+
                 {error_message &&
                     <Alert type="error">
                         {error_message}

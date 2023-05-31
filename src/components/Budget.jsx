@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import Alert from "./Alert";
 
 const Budget = ({ budget, setBudget, setIsValidBudget }) => {
@@ -6,7 +7,9 @@ const Budget = ({ budget, setBudget, setIsValidBudget }) => {
     const [message, setMessage] = useState('');
 
     /**
+     * Check if it is a valid budget.
      * 
+     * @param {Object} event
      */
     const addBudget = (event) => {
         event.preventDefault();
