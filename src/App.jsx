@@ -10,6 +10,14 @@ function App() {
   const [is_valid_budget, setIsValidBudget] = useState(false);
   const [modal, setModal] = useState(false);
   const [animation, setAnimation] = useState(false);
+  const [expenses, setExpenses] = useState([]);
+
+  const saveExpense = (expense) => {
+    setExpenses([
+      ...expenses,
+      expense
+    ]);
+  };
 
   /**
    * 
@@ -46,6 +54,7 @@ function App() {
           setModal={setModal}
           animation={animation}
           setAnimation={setAnimation}
+          saveExpense={saveExpense}
         />
       }
     </div>

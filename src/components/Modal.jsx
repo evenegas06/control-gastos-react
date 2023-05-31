@@ -1,16 +1,68 @@
+import { useState } from "react";
 import close_icon from "../img/cerrar.svg";
+import Alert from "./Alert";
 
-const Modal = ({ setModal, animation, setAnimation }) => {
+const initialExpense = {
+    name: '',
+    amount: 0,
+    category: ''
+};
+
+const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
+    /* ----- State ----- */
+    const [expense, setExpense] = useState(initialExpense);
+    const [error_message, setErrorMessage] = useState('');
 
     /**
      * 
      */
     const closeModal = () => {
         setAnimation(false);
-        
+
         setTimeout(() => {
             setModal(false);
         }, 500);
+    };
+
+    /**
+     * 
+     * @param {Object} event 
+     */
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+
+        if (name === "amount") {
+            setExpense({
+                ...expense,
+                amount: Number(value)
+            });
+        } else {
+            setExpense({
+                ...expense,
+                [name]: value
+            });
+        }
+    };
+
+    /**
+     * 
+     * @param {Object} event 
+     */
+    const addExpense = (event) => {
+        event.preventDefault();
+
+        if (Object.values(expense).includes('')) {
+            setErrorMessage('Todos los campos son obligatorios!!');
+
+            setTimeout(() => {
+                setErrorMessage('');
+            }, 2000);
+
+            return;
+        }
+
+        saveExpense({expense});
+        setExpense(initialExpense);
     };
 
     return (
@@ -23,16 +75,27 @@ const Modal = ({ setModal, animation, setAnimation }) => {
                 />
             </div>
 
-            <form className={`formulario ${animation ? "animar" : "cerrar"}`}>
+            <form
+                className={`formulario ${animation ? "animar" : "cerrar"}`}
+                onSubmit={addExpense}
+            >
                 <legend>Nuevo gasto</legend>
+                {error_message &&
+                    <Alert type="error">
+                        {error_message}
+                    </Alert>
+                }
 
                 <div className="campo">
                     <label htmlFor="name">Nombre del gasto</label>
 
                     <input
                         id="name"
+                        name="name"
                         type="text"
                         placeholder="Añade el nombre de tu gasto"
+                        value={expense.name}
+                        onChange={handleInputChange}
                     />
                 </div>
 
@@ -41,15 +104,23 @@ const Modal = ({ setModal, animation, setAnimation }) => {
 
                     <input
                         id="amount"
+                        name="amount"
                         type="number"
                         placeholder="Añade la cantidad del gasto ej. 300"
+                        value={expense.amount}
+                        onChange={handleInputChange}
                     />
                 </div>
 
                 <div className="campo">
                     <label htmlFor="category">Categoría</label>
 
-                    <select name="category" id="category">
+                    <select
+                        name="category"
+                        id="category"
+                        value={expense.category}
+                        onChange={handleInputChange}
+                    >
                         <option value="">-- Seleccione --</option>
                         <option value="saving">Ahorro</option>
                         <option value="food">Comida</option>
