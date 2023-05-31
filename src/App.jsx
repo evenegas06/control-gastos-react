@@ -3,6 +3,8 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
 
+import { generateID } from "./utils/helpers";
+
 import new_budget_icon from "./img/nuevo-gasto.svg";
 
 function App() {
@@ -19,10 +21,14 @@ function App() {
    * @param {Object} expense 
    */
   const saveExpense = (expense) => {
-    setExpenses([
-      ...expenses,
-      expense
-    ]);
+    expense.id = generateID();
+
+    setExpenses([...expenses, expense]);
+    setAnimation(false);
+
+    setTimeout(() => {
+      setModal(false);
+    }, 500);
   };
 
   /**
