@@ -6,6 +6,7 @@ import Modal from "./components/Modal";
 import { generateID } from "./utils/helpers";
 
 import new_budget_icon from "./img/nuevo-gasto.svg";
+import ExpenseList from "./components/ExpenseList";
 
 function App() {
   /* ----- State ----- */
@@ -22,6 +23,7 @@ function App() {
    */
   const saveExpense = (expense) => {
     expense.id = generateID();
+    expense.date = Date.now();
 
     setExpenses([...expenses, expense]);
     setAnimation(false);
@@ -52,13 +54,21 @@ function App() {
       />
 
       {is_valid_budget && (
-        <div className="nuevo-gasto">
-          <img
-            src={new_budget_icon}
-            alt="Icono nuevo gasto"
-            onClick={handleModal}
-          />
-        </div>
+        <>
+          <main>
+            <ExpenseList
+              expenses={expenses}
+            />
+          </main>
+          
+          <div className="nuevo-gasto">
+            <img
+              src={new_budget_icon}
+              alt="Icono nuevo gasto"
+              onClick={handleModal}
+            />
+          </div>
+        </>
       )}
 
       {modal &&

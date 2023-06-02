@@ -33,7 +33,7 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
     const handleInputChange = (event) => {
         const { name, value } = event.target;
 
-        if (name === "amount") {
+        if (name === 'amount') {
             setExpense({
                 ...expense,
                 amount: Number(value)
@@ -64,7 +64,7 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
             return;
         }
 
-        saveExpense({ expense });
+        saveExpense(expense);
         setExpense(initialExpense);
     };
 
@@ -126,13 +126,13 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
                         onChange={handleInputChange}
                     >
                         <option value="">-- Seleccione --</option>
-                        <option value="saving">Ahorro</option>
-                        <option value="food">Comida</option>
-                        <option value="home">Hogar</option>
-                        <option value="others">Gastos varios</option>
-                        <option value="entertainment">Entretenimiento</option>
-                        <option value="health">Salud</option>
-                        <option value="subscriptions">Suscripciones</option>
+                        <option value="ahorro">Ahorro</option>
+                        <option value="Comida">Comida</option>
+                        <option value="hogar">Hogar</option>
+                        <option value="gastos varios">Gastos varios</option>
+                        <option value="entretenimiento">Entretenimiento</option>
+                        <option value="salud">Salud</option>
+                        <option value="subscripciones">Suscripciones</option>
                     </select>
                 </div>
 
