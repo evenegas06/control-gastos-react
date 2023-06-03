@@ -3,7 +3,7 @@ import { formatCurrency } from "../utils/helpers";
 
 const BudgetControl = ({ budget, expenses }) => {
     /* ----- State ----- */
-    const [avilable, setAvailable] = useState(0);
+    const [available, setAvailable] = useState(0);
     const [spent, setSpent] = useState(0);
 
     /* ----- Hooks ----- */
@@ -12,8 +12,11 @@ const BudgetControl = ({ budget, expenses }) => {
             return carry + item.amount;
         }, 0);
 
+        const total_available = budget - total_spent;
+        
+        setAvailable(total_available);
         setSpent(total_spent);
-    }, [expenses]);
+    }, [/* budget, */ expenses]);
     
     return (
         <div className="contenedor-presupuesto sombra contenedor dos-columnas">
@@ -29,7 +32,7 @@ const BudgetControl = ({ budget, expenses }) => {
 
                 <p>
                     <span>Disponible: </span>
-                    {formatCurrency(avilable)}
+                    {formatCurrency(available)}
                 </p>
 
                 <p>
