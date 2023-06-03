@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Alert from "./Alert";
+
 import close_icon from "../img/cerrar.svg";
 
 const initialExpense = {
@@ -141,5 +142,4 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
         </div>
     );
 };
-
 export default Modal;

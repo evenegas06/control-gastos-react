@@ -25,31 +25,46 @@ const dictionary = {
     entretenimiento: entertainment_icon,
     salud: health_icon,
     suscripciones: subscription_icon
-
 };
 
-const Expense = ({ expense }) => {
+const Expense = ({ expense, setExpenseToEdit }) => {
     const { category, name, amount, id, date } = expense;
 
     /**
+     * Swipe from left to right.
      * 
+     * @returns {LeadingActions} Component from react-swipeable-lis 
      */
     const leadingActions = () => {
-        console.log('Editar...');
+        return (
+            <LeadingActions>
+                <SwipeAction onClick={() => { setExpenseToEdit(expense); }}>
+                    Editar
+                </SwipeAction>
+            </LeadingActions>
+        );
     };
 
     /**
+     * Swipe from right to left.
      * 
+     * @returns {TrailingActions} Component from react-swipeable-lis 
      */
     const trailingActions = () => {
-        console.log('Eliminar...');
+        return (
+            <TrailingActions>
+                <SwipeAction onClick={() => { console.log('...'); }}>
+                    Eliminar
+                </SwipeAction>
+            </TrailingActions>
+        );
     };
 
     return (
         <SwipeableList>
             <SwipeableListItem
-                leadingActions={leadingActions}
-                trailingActions={trailingActions}
+                leadingActions={leadingActions()}
+                trailingActions={trailingActions()}
             >
                 <div className="gasto sombra">
                     <div className="contenido-gasto">
