@@ -127,12 +127,12 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
                     >
                         <option value="">-- Seleccione --</option>
                         <option value="ahorro">Ahorro</option>
-                        <option value="Comida">Comida</option>
+                        <option value="comida">Comida</option>
                         <option value="hogar">Hogar</option>
-                        <option value="gastos varios">Gastos varios</option>
+                        <option value="gastos">Gastos varios</option>
                         <option value="entretenimiento">Entretenimiento</option>
                         <option value="salud">Salud</option>
-                        <option value="subscripciones">Suscripciones</option>
+                        <option value="suscripciones">Suscripciones</option>
                     </select>
                 </div>
 

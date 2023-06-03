@@ -22,3 +22,19 @@ export const generateID = () => {
 
     return random + date;
 };
+
+/**
+ * Create a friendly date.
+ * 
+ * @param {Date} date 
+ * @returns {string}
+ */
+export const formatDate = (date) => {
+    const format = new Date(date);
+
+    return format.toLocaleDateString('es-Es', {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+    });
+};
