@@ -37,7 +37,7 @@ function App() {
 			const updated_expenses = expenses.map((item) => {
 				return item.id === expense.id ? expense : item;
 			});
-			
+
 			setExpenses(updated_expenses);
 		} else {
 			// Create
@@ -55,9 +55,21 @@ function App() {
 	};
 
 	/**
+	 * 
+	 * @param {String} id 
+	 */
+	const deleteExpense = (id) => {
+		const updated_expenses = expenses.filter((item) => {
+			return item.id !== id;
+		});
+
+		setExpenses(updated_expenses);
+	};
+
+	/**
 	 * Open modal window.
 	 * 
-	 * @param {boolean} edit
+	 * @param {Boolean} edit
 	 */
 	const handleModal = (edit = false) => {
 		setModal(true);
@@ -86,6 +98,7 @@ function App() {
 						<ExpenseList
 							expenses={expenses}
 							setExpenseToEdit={setExpenseToEdit}
+							deleteExpense={deleteExpense}
 						/>
 					</main>
 

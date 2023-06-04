@@ -1,6 +1,6 @@
 import Expense from "./Expense";
 
-const ExpenseList = ({ expenses, setExpenseToEdit }) => {
+const ExpenseList = ({ expenses, setExpenseToEdit, deleteExpense }) => {
     return (
         <div className="listado-gastos contenedor">
             <h2>
@@ -13,6 +13,7 @@ const ExpenseList = ({ expenses, setExpenseToEdit }) => {
                         key={item.id}
                         expense={item}
                         setExpenseToEdit={setExpenseToEdit}
+                        deleteExpense={deleteExpense}
                     />
                 );
             })}
