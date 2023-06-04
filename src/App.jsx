@@ -22,7 +22,7 @@ function App() {
 	/* ----- Hooks ----- */
 	useEffect(() => {
 		if (Object.keys(expense_to_edit).length > 0) {
-			handleModal();
+			handleModal(true);
 		}
 	}, [expense_to_edit]);
 
@@ -45,9 +45,14 @@ function App() {
 
 	/**
 	 * Open modal window.
+	 * 
+	 * @param {boolean} edit
 	 */
-	const handleModal = () => {
+	const handleModal = (edit = false) => {
 		setModal(true);
+		if (!edit) {
+			setExpenseToEdit({});
+		}
 
 		setTimeout(() => {
 			setAnimation(true);
@@ -77,7 +82,7 @@ function App() {
 						<img
 							src={new_budget_icon}
 							alt="Icono nuevo gasto"
-							onClick={handleModal}
+							onClick={() => handleModal(false)}
 						/>
 					</div>
 				</>
@@ -89,10 +94,10 @@ function App() {
 					animation={animation}
 					setAnimation={setAnimation}
 					saveExpense={saveExpense}
+					expense_to_edit={expense_to_edit}
 				/>
 			}
 		</div>
 	);
 }
-
 export default App;

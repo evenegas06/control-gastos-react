@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Alert from "./Alert";
 
@@ -10,10 +10,25 @@ const initialExpense = {
     category: ''
 };
 
-const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
+const Modal = ({
+    setModal,
+    animation,
+    setAnimation,
+    saveExpense,
+    expense_to_edit
+}) => {
     /* ----- State ----- */
-    const [expense, setExpense] = useState(initialExpense);
+    const [expense, setExpense] = useState({});
     const [error_message, setErrorMessage] = useState('');
+
+    /* ----- Hooks ----- */
+    useEffect(() => {
+        if (Object.keys(expense_to_edit).length > 0) {
+            expense.name = expense_to_edit.name;
+            expense.amount = expense_to_edit.amount;
+            expense.category = expense_to_edit.category;
+        }
+    }, []);
 
     /**
      *  Close modal after 500 ms.
@@ -55,7 +70,11 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
     const addExpense = (event) => {
         event.preventDefault();
 
-        if (Object.values(expense).includes('')) {
+        if (
+            !expense.name   ||
+            !expense.amount ||
+            !expense.category
+        ) {
             setErrorMessage('Todos los campos son obligatorios!!');
 
             setTimeout(() => {
@@ -64,9 +83,8 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
 
             return;
         }
-
         saveExpense(expense);
-        setExpense(initialExpense);
+        // setExpense({});
     };
 
     return (
@@ -83,7 +101,7 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
                 className={`formulario ${animation ? "animar" : "cerrar"}`}
                 onSubmit={addExpense}
             >
-                <legend>Nuevo gasto</legend>
+                <legend>{expense_to_edit.name ? 'Editar Gasto' : 'Nuevo Gasto'}</legend>
 
                 {error_message &&
                     <Alert type="error">
@@ -99,7 +117,7 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
                         name="name"
                         type="text"
                         placeholder="Añade el nombre de tu gasto"
-                        value={expense.name}
+                        value={expense.name || ''}
                         onChange={handleInputChange}
                     />
                 </div>
@@ -112,7 +130,7 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
                         name="amount"
                         type="number"
                         placeholder="Añade la cantidad del gasto ej. 300"
-                        value={expense.amount}
+                        value={expense.amount || ''}
                         onChange={handleInputChange}
                     />
                 </div>
@@ -137,7 +155,10 @@ const Modal = ({ setModal, animation, setAnimation, saveExpense }) => {
                     </select>
                 </div>
 
-                <input type="submit" value="Añadir gasto" />
+                <input
+                    type="submit"
+                    value={expense_to_edit.name ? 'Guardar Cambios' : 'Añadir Gasto'}
+                />
             </form>
         </div>
     );

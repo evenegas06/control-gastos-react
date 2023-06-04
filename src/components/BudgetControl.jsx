@@ -13,11 +13,11 @@ const BudgetControl = ({ budget, expenses }) => {
         }, 0);
 
         const total_available = budget - total_spent;
-        
+
         setAvailable(total_available);
         setSpent(total_spent);
     }, [/* budget, */ expenses]);
-    
+
     return (
         <div className="contenedor-presupuesto sombra contenedor dos-columnas">
             <div>
@@ -43,5 +43,4 @@ const BudgetControl = ({ budget, expenses }) => {
         </div>
     );
 };
-
 export default BudgetControl;

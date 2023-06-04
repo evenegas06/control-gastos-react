@@ -33,7 +33,7 @@ const Budget = ({ budget, setBudget, setIsValidBudget }) => {
                         type="number"
                         className="nuevo-presupuesto"
                         placeholder="Añade tu presupuesto"
-                        value={budget}
+                        value={budget || ''}
                         onChange={(event) => { setBudget(Number(event.target.value)); }}
                     />
 
@@ -49,5 +49,4 @@ const Budget = ({ budget, setBudget, setIsValidBudget }) => {
         </div>
     );
 };
-
 export default Budget;
