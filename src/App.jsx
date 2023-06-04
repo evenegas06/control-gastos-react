@@ -32,10 +32,21 @@ function App() {
 	 * @param {Object} expense 
 	 */
 	const saveExpense = (expense) => {
-		expense.id = generateID();
-		expense.date = Date.now();
+		if (expense.id) {
+			// Update
+			const updated_expenses = expenses.map((item) => {
+				return item.id === expense.id ? expense : item;
+			});
+			
+			setExpenses(updated_expenses);
+		} else {
+			// Create
+			expense.id = generateID();
+			expense.date = Date.now();
 
-		setExpenses([...expenses, expense]);
+			setExpenses([...expenses, expense]);
+		}
+
 		setAnimation(false);
 
 		setTimeout(() => {

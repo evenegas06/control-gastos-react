@@ -27,6 +27,8 @@ const Modal = ({
             expense.name = expense_to_edit.name;
             expense.amount = expense_to_edit.amount;
             expense.category = expense_to_edit.category;
+            expense.id = expense_to_edit.id;
+            expense.date = expense_to_edit.date;
         }
     }, []);
 
@@ -70,8 +72,7 @@ const Modal = ({
     const addExpense = (event) => {
         event.preventDefault();
 
-        if (
-            !expense.name   ||
+        if (!expense.name ||
             !expense.amount ||
             !expense.category
         ) {
@@ -101,7 +102,9 @@ const Modal = ({
                 className={`formulario ${animation ? "animar" : "cerrar"}`}
                 onSubmit={addExpense}
             >
-                <legend>{expense_to_edit.name ? 'Editar Gasto' : 'Nuevo Gasto'}</legend>
+                <legend>
+                    {expense_to_edit.name ? 'Editar Gasto' : 'Nuevo Gasto'}
+                </legend>
 
                 {error_message &&
                     <Alert type="error">
