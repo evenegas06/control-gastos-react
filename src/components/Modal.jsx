@@ -15,7 +15,8 @@ const Modal = ({
     animation,
     setAnimation,
     saveExpense,
-    expense_to_edit
+    expense_to_edit,
+    setExpenseToEdit
 }) => {
     /* ----- State ----- */
     const [expense, setExpense] = useState({});
@@ -37,6 +38,7 @@ const Modal = ({
      */
     const closeModal = () => {
         setAnimation(false);
+        setExpenseToEdit({});
 
         setTimeout(() => {
             setModal(false);

@@ -39,6 +39,7 @@ function App() {
 			});
 
 			setExpenses(updated_expenses);
+			setExpenseToEdit({});
 		} else {
 			// Create
 			expense.id = generateID();
@@ -119,6 +120,7 @@ function App() {
 					setAnimation={setAnimation}
 					saveExpense={saveExpense}
 					expense_to_edit={expense_to_edit}
+					setExpenseToEdit={setExpenseToEdit}
 				/>
 			}
 		</div>
