@@ -25,8 +25,7 @@ const BudgetControl = ({ budget, expenses }) => {
         setTimeout(() => {
             setPercentage(calculate_percentage);
         }, 1000);
-
-    }, [/* budget, */ expenses]);
+    }, [expenses]); // Update available, spent and percentage states.
 
     return (
         <div className="contenedor-presupuesto sombra contenedor dos-columnas">

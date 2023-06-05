@@ -31,7 +31,7 @@ const Modal = ({
             expense.id = expense_to_edit.id;
             expense.date = expense_to_edit.date;
         }
-    }, []);
+    }, []); // Fill the form in the modal window for edit.
 
     /**
      *  Close modal after 500 ms.
@@ -74,7 +74,8 @@ const Modal = ({
     const addExpense = (event) => {
         event.preventDefault();
 
-        if (!expense.name ||
+        if (
+            !expense.name ||
             !expense.amount ||
             !expense.category
         ) {
@@ -87,7 +88,6 @@ const Modal = ({
             return;
         }
         saveExpense(expense);
-        // setExpense({});
     };
 
     return (

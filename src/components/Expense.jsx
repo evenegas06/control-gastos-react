@@ -33,7 +33,7 @@ const Expense = ({ expense, setExpenseToEdit, deleteExpense }) => {
     /**
      * Swipe from left to right.
      * 
-     * @returns {LeadingActions} Component from react-swipeable-lis 
+     * @returns {LeadingActions} Component from react-swipeable-list 
      */
     const leadingActions = () => {
         return (
@@ -48,7 +48,7 @@ const Expense = ({ expense, setExpenseToEdit, deleteExpense }) => {
     /**
      * Swipe from right to left.
      * 
-     * @returns {TrailingActions} Component from react-swipeable-lis 
+     * @returns {TrailingActions} Component from react-swipeable-list 
      */
     const trailingActions = () => {
         return (

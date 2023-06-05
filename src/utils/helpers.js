@@ -2,7 +2,7 @@
  * Converts a number to a string by using the en-US locale.
  * 
  * @param {Number} amount 
- * @returns {string}
+ * @returns {String}
  */
 export const formatCurrency = (amount) => {
     return amount.toLocaleString('en-US', {
@@ -14,7 +14,7 @@ export const formatCurrency = (amount) => {
 /**
  * Create a random ID.
  * 
- * @returns {string}
+ * @returns {String}
  */
 export const generateID = () => {
     const random = Math.random().toString(36).substring(2);
@@ -27,7 +27,7 @@ export const generateID = () => {
  * Create a friendly date.
  * 
  * @param {Date} date 
- * @returns {string}
+ * @returns {String}
  */
 export const formatDate = (date) => {
     const format = new Date(date);
