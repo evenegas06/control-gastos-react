@@ -4,7 +4,7 @@ import "react-circular-progressbar/dist/styles.css";
 
 import { formatCurrency } from "../utils/helpers";
 
-const BudgetControl = ({ budget, expenses }) => {
+const BudgetControl = ({ budget, setBudget, setIsValidBudget, expenses, setExpenses, }) => {
     /* ----- State ----- */
     const [available, setAvailable] = useState(0);
     const [spent, setSpent] = useState(0);
@@ -27,6 +27,19 @@ const BudgetControl = ({ budget, expenses }) => {
         }, 1000);
     }, [expenses]); // Update available, spent and percentage states.
 
+    /**
+     * Reset States and local storage items.
+     */
+    const resetApp = () => {
+        const confirm_alert = window.confirm('¿Deseas reiniciar presupuesto y gastos?');
+        
+        if (confirm_alert) {
+            setBudget(0);
+            setIsValidBudget(false);
+            setExpenses([]);
+        }
+    };
+
     return (
         <div className="contenedor-presupuesto sombra contenedor dos-columnas">
             <div>
@@ -34,20 +47,27 @@ const BudgetControl = ({ budget, expenses }) => {
                     value={percentage}
                     text={`${percentage}% Gastado`}
                     styles={buildStyles({
-                        pathColor: '#3B82F6',
+                        pathColor: percentage > 100 ? '#DC2626' : '#3B82F6',
                         trailColor: '#F5F5F5',
-                        textColor: '3B82F6'
+                        textColor: percentage > 100 ? '#DC2626' : '#3B82F6'
                     })}
                 />
             </div>
 
             <div className="contenido-presupuesto">
+                <button
+                    type="button"
+                    className="reset-app"
+                    onClick={resetApp}
+                >
+                    Resetear App
+                </button>
                 <p>
                     <span>Presupuesto: </span>
                     {formatCurrency(budget)}
                 </p>
 
-                <p>
+                <p className={`${available < 0 ? 'negativo' : ''}`}>
                     <span>Disponible: </span>
                     {formatCurrency(available)}
                 </p>

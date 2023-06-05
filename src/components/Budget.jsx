@@ -15,7 +15,7 @@ const Budget = ({ budget, setBudget, setIsValidBudget }) => {
         event.preventDefault();
 
         if (!budget || budget < 0) {
-            setMessage('No es un presupuesto válido');
+            setMessage('¡No es un presupuesto válido!');
             return;
         }
 

@@ -79,11 +79,21 @@ const Modal = ({
             !expense.amount ||
             !expense.category
         ) {
-            setErrorMessage('Todos los campos son obligatorios!!');
+            setErrorMessage('¡Todos los campos son obligatorios!');
 
             setTimeout(() => {
                 setErrorMessage('');
-            }, 2000);
+            }, 3000);
+
+            return;
+        }
+
+        if (expense.amount < 0) {
+            setErrorMessage('¡La cantidad del gasto no puede ser negativa!');
+
+            setTimeout(() => {
+                setErrorMessage('');
+            }, 3000);
 
             return;
         }
