@@ -58,7 +58,7 @@ function App() {
 
 			setLeakedExpenses(leaked_expenses);
 		}
-	}, [filter]); // Filter by category.
+	}, [expenses, filter]); // Filter by category.
 
 	/**
 	 * Add expense in *expenses state*.
@@ -79,7 +79,7 @@ function App() {
 			expense.id = generateID();
 			expense.date = Date.now();
 
-			setExpenses([...expenses, expense]);
+			setExpenses([expense, ...expenses]);
 		}
 
 		setAnimation(false);

@@ -4,11 +4,11 @@ import Alert from "./Alert";
 
 import close_icon from "../img/cerrar.svg";
 
-const initialExpense = {
-    name: '',
-    amount: 0,
-    category: ''
-};
+// const initialExpense = {
+//     name: '',
+//     amount: 0,
+//     category: ''
+// };
 
 const Modal = ({
     setModal,
