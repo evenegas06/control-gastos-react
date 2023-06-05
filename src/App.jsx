@@ -7,6 +7,7 @@ import ExpenseList from "./components/ExpenseList";
 import { generateID } from "./utils/helpers";
 
 import new_budget_icon from "./img/nuevo-gasto.svg";
+import Filters from "./components/Filters";
 
 function App() {
 	/* ----- State ----- */
@@ -22,6 +23,9 @@ function App() {
 		JSON.parse(localStorage.getItem('expenses')) ?? []
 	);
 	const [expense_to_edit, setExpenseToEdit] = useState({});
+
+	const [filter, setFilter] = useState('');
+	const [leaked_expenses, setLeakedExpenses] = useState([]);
 
 	/* ----- Hooks ----- */
 	useEffect(() => {
@@ -45,6 +49,16 @@ function App() {
 	useEffect(() => {
 		localStorage.setItem('expenses', JSON.stringify(expenses) ?? []);
 	}, [expenses]); // Set expenses expenses in localStorage.
+
+	useEffect(() => {
+		if (filter) {
+			const leaked_expenses = expenses.filter((item) => {
+				return item.category === filter;
+			});
+
+			setLeakedExpenses(leaked_expenses);
+		}
+	}, [filter]); // Filter by category.
 
 	/**
 	 * Add expense in *expenses state*.
@@ -76,7 +90,8 @@ function App() {
 	};
 
 	/**
-	 * //TODO: description
+	 * Delete the specified item.
+	 * 
 	 * @param {String} id 
 	 */
 	const deleteExpense = (id) => {
@@ -116,10 +131,17 @@ function App() {
 			{is_valid_budget && (
 				<>
 					<main>
+						<Filters
+							filter={filter}
+							setFilter={setFilter}
+						/>
+
 						<ExpenseList
 							expenses={expenses}
 							setExpenseToEdit={setExpenseToEdit}
 							deleteExpense={deleteExpense}
+							filter={filter}
+							leaked_expenses={leaked_expenses}
 						/>
 					</main>
 
