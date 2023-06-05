@@ -18,7 +18,9 @@ function App() {
 	const [modal, setModal] = useState(false);
 	const [animation, setAnimation] = useState(false);
 
-	const [expenses, setExpenses] = useState([]);
+	const [expenses, setExpenses] = useState(
+		JSON.parse(localStorage.getItem('expenses')) ?? []
+	);
 	const [expense_to_edit, setExpenseToEdit] = useState({});
 
 	/* ----- Hooks ----- */
@@ -39,6 +41,10 @@ function App() {
 			setIsValidBudget(true);
 		}
 	}, []); // Get budget from localStorage.
+
+	useEffect(() => {
+		localStorage.setItem('expenses', JSON.stringify(expenses) ?? []);
+	}, [expenses]); // Set expenses expenses in localStorage.
 
 	/**
 	 * Add expense in *expenses state*.
