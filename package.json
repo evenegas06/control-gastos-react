@@ -1,5 +1,6 @@
 {
   "name": "control-gastos",
+  "homepage": "https://eduardovr.com/control-gastos",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
