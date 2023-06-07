@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
 import ExpenseList from "./components/ExpenseList";
+import Filters from "./components/Filters";
 
 import { generateID } from "./utils/helpers";
 
 import new_budget_icon from "./img/nuevo-gasto.svg";
-import Filters from "./components/Filters";
 
 function App() {
-	/* ----- State ----- */
+	/* ----- States ----- */
 	const [budget, setBudget] = useState(
 		Number(localStorage.getItem('budget')) ?? 0
 	);
@@ -28,28 +28,33 @@ function App() {
 	const [leaked_expenses, setLeakedExpenses] = useState([]);
 
 	/* ----- Hooks ----- */
+	/* Open modal when swipe to edit element. */
 	useEffect(() => {
 		if (Object.keys(expense_to_edit).length > 0) {
 			handleModal(true);
 		}
-	}, [expense_to_edit]); // Open modal when swipe to edit element.
+	}, [expense_to_edit]);
 
+	/* Set budget in localStorage. */
 	useEffect(() => {
 		localStorage.setItem('budget', budget ?? 0);
-	}, [budget]); // Set budget in localStorage.
+	}, [budget]);
 
+	/* Get budget from localStorage. */
 	useEffect(() => {
 		const budget_local_storage = Number(localStorage.getItem('budget')) ?? 0;
 
 		if (budget_local_storage > 0) {
 			setIsValidBudget(true);
 		}
-	}, []); // Get budget from localStorage.
+	}, []);
 
+	/* Set expenses in localStorage. */
 	useEffect(() => {
 		localStorage.setItem('expenses', JSON.stringify(expenses) ?? []);
-	}, [expenses]); // Set expenses expenses in localStorage.
+	}, [expenses]);
 
+	/* Filter by category. */
 	useEffect(() => {
 		if (filter) {
 			const leaked_expenses = expenses.filter((item) => {
@@ -58,7 +63,7 @@ function App() {
 
 			setLeakedExpenses(leaked_expenses);
 		}
-	}, [expenses, filter]); // Filter by category.
+	}, [expenses, filter]);
 
 	/**
 	 * Add expense in *expenses state*.
@@ -67,7 +72,7 @@ function App() {
 	 */
 	const saveExpense = (expense) => {
 		if (expense.id) {
-			// Update
+			/* Update */
 			const updated_expenses = expenses.map((item) => {
 				return item.id === expense.id ? expense : item;
 			});
@@ -75,7 +80,7 @@ function App() {
 			setExpenses(updated_expenses);
 			setExpenseToEdit({});
 		} else {
-			// Create
+			/* Create */
 			expense.id = generateID();
 			expense.date = Date.now();
 

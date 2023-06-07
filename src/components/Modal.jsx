@@ -23,6 +23,7 @@ const Modal = ({
     const [error_message, setErrorMessage] = useState('');
 
     /* ----- Hooks ----- */
+    /* Fill the form in the modal window for edit. */
     useEffect(() => {
         if (Object.keys(expense_to_edit).length > 0) {
             expense.name = expense_to_edit.name;
@@ -31,7 +32,7 @@ const Modal = ({
             expense.id = expense_to_edit.id;
             expense.date = expense_to_edit.date;
         }
-    }, []); // Fill the form in the modal window for edit.
+    }, []);
 
     /**
      *  Close modal after 500 ms.

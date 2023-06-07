@@ -5,12 +5,13 @@ import "react-circular-progressbar/dist/styles.css";
 import { formatCurrency } from "../utils/helpers";
 
 const BudgetControl = ({ budget, setBudget, setIsValidBudget, expenses, setExpenses, }) => {
-    /* ----- State ----- */
+    /* ----- States ----- */
     const [available, setAvailable] = useState(0);
     const [spent, setSpent] = useState(0);
     const [percentage, setPercentage] = useState(0);
 
     /* ----- Hooks ----- */
+    /* Update available, spent and percentage states. */
     useEffect(() => {
         const total_spent = expenses.reduce((carry, item) => {
             return carry + item.amount;
@@ -25,7 +26,7 @@ const BudgetControl = ({ budget, setBudget, setIsValidBudget, expenses, setExpen
         setTimeout(() => {
             setPercentage(calculate_percentage);
         }, 1000);
-    }, [expenses]); // Update available, spent and percentage states.
+    }, [expenses]);
 
     /**
      * Reset States and local storage items.
