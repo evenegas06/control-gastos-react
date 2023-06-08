@@ -20,7 +20,7 @@ function App() {
 	const [animation, setAnimation] = useState(false);
 
 	const [expenses, setExpenses] = useState(
-		JSON.parse(localStorage.getItem('expenses')) ?? []
+		localStorage.getItem('expenses') ? JSON.parse(localStorage.getItem('expenses')) : []
 	);
 	const [expense_to_edit, setExpenseToEdit] = useState({});
 
